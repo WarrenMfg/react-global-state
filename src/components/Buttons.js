@@ -1,17 +1,16 @@
 import React from 'react'
-import withGlobalStore from './withGlobalStore'
 
-function Buttons({globalStore: {dispatch}, type}) {
+function Buttons({dispatch, type}) {
   return (
     <>
-      <button 
+      <button
         onClick={() => dispatch({type: type.decrement})}
       >Decrement</button>
-      <button 
+      <button
         onClick={() => dispatch({type: type.increment})}
       >Increment</button>
     </>
-  )
+  );
 }
-
-export default withGlobalStore(Buttons)
+// export default Buttons;
+export default React.memo(Buttons, () => true);

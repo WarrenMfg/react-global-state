@@ -1,8 +1,4 @@
-import { calcTotal } from '../utils/utils';
-
-export const submit = async (state, dispatch) => {
-  const total = calcTotal(state);
-
+export const submit = async (total, dispatch) => {
   if (confirm(`Please confirm your total: $${total}`)) {
     dispatch({ type: 'IS_LOADING' });
     await new Promise(resolve => setTimeout(() => resolve(), 3000));

@@ -14,11 +14,9 @@ function rootReducer() {
 
   // combined state
   return {
-    state: {
-      horse,
-      boxing,
-      baseball
-    },
+    horse,
+    boxing,
+    baseball,
     loading,
     dispatch: payload => combinedDispatches.forEach(d => d(payload))
   };

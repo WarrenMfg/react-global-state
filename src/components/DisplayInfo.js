@@ -1,9 +1,6 @@
 import React from 'react';
-import withGlobalStore from './withGlobalStore';
-import { getState } from '../utils/utils';
 
-function DisplayInfo({ globalStore, statePath }) {
-  const { price, quantity, subtotal } = getState(globalStore, statePath);
+function DisplayInfo({ price, quantity, subtotal }) {
   return (
     <h3>
       <span className='price'>Price: ${price}</span> ×{' '}
@@ -13,4 +10,4 @@ function DisplayInfo({ globalStore, statePath }) {
   );
 }
 
-export default withGlobalStore(DisplayInfo);
+export default DisplayInfo;

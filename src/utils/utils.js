@@ -1,13 +1,16 @@
-export function getState(state, statePath) {
-  const properties = statePath.split('.');
-  let nestedState = state;
-  properties.forEach(property => (nestedState = nestedState[property]));
-  return nestedState;
+export function getStates(globalStore) {
+  return Object.keys(globalStore).reduce((acc, prop) => {
+    if (prop === 'loading' || prop === 'dispatch') {
+      return acc;
+    } else {
+      acc[prop] = globalStore[prop];
+      return acc;
+    }
+  }, {});
 }
 
-export function calcTotal(state) {
-  const keys = Object.keys(state);
-  return keys.reduce((acc, key) => {
-    return acc + state[key].price * state[key].quantity;
+export function calcTotal(states) {
+  return Object.keys(states).reduce((acc, key) => {
+    return acc + states[key].price * states[key].quantity;
   }, 0);
 }

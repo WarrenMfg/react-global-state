@@ -1,7 +1,6 @@
 import React from 'react';
-import withGlobalStore from './withGlobalStore';
 
-function MaskingDiv({ globalStore: { loading: { isLoading } } }) {
+function MaskingDiv({ isLoading }) {
   return (
     <div className='masking-div' style={{ display: `${isLoading ? 'block' : 'none'}` }}>
       <img src='spinner.gif' width='100' height='100' />
@@ -9,4 +8,10 @@ function MaskingDiv({ globalStore: { loading: { isLoading } } }) {
   );
 }
 
-export default withGlobalStore(MaskingDiv);
+export default React.memo(MaskingDiv, (prevProps, nextProps) => {
+  if (prevProps.isLoading === nextProps.isLoading) {
+    return true;
+  } else {
+    return false;
+  }
+});
